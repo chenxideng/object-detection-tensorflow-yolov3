@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : video_demo.py
-#   Author      : YunYang1994
-#   Created date: 2018-11-30 15:56:37
 #   Description :
 #
 #================================================================
@@ -21,7 +19,7 @@ from PIL import Image
 
 return_elements = ["input/input_data:0", "pred_sbbox/concat_2:0", "pred_mbbox/concat_2:0", "pred_lbbox/concat_2:0"]
 pb_file         = "./yolov3_coco.pb"
-video_path      = "./docs/images/road.mp4"
+video_path      = "./docs/images/test.mov"
 # video_path      = 0
 num_classes     = 80
 input_size      = 416
@@ -30,6 +28,11 @@ return_tensors  = utils.read_pb_return_tensors(graph, pb_file, return_elements)
 
 with tf.Session(graph=graph) as sess:
     vid = cv2.VideoCapture(video_path)
+
+    accum_time = 0
+    curr_fps = 0
+    fps = "FPS: ??"
+
     while True:
         return_value, frame = vid.read()
         if return_value:
@@ -57,7 +60,19 @@ with tf.Session(graph=graph) as sess:
         curr_time = time.time()
         exec_time = curr_time - prev_time
         result = np.asarray(image)
-        info = "time: %.2f ms" %(1000*exec_time)
+        accum_time = accum_time + exec_time
+        curr_fps = curr_fps + 1
+
+        info = "time: %.2f s" %(exec_time)
+        print(info)
+
+        if accum_time > 1:
+            accum_time = accum_time - 1
+            fps = "FPS: " + str(curr_fps)
+            curr_fps = 0
+
+        cv2.putText(result, text=fps, org=(3, 15), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=0.50, color=(255, 0, 0), thickness=2)
         cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
         result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         cv2.imshow("result", result)
