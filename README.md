@@ -23,7 +23,7 @@ $ git clone https://github.com/YunYang1994/tensorflow-yolov3.git
 2.  You are supposed  to install some dependencies before getting out hands with these codes.
 ```bashrc
 $ cd tensorflow-yolov3
-$ pip install -r ./docs/requirements.txt
+$ pip3 install -r ./docs/requirements.txt
 ```
 3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](https://pan.baidu.com/s/11mwiUy8KotjUVQXqkGGPFQ&shfl=sharepset)】
 ```bashrc
@@ -31,8 +31,8 @@ $ cd checkpoint
 $ wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
 $ tar -xvf yolov3_coco.tar.gz
 $ cd ..
-$ python convert_weight.py
-$ python freeze_graph.py
+$ sudo python3 convert_weight.py
+$ sudo python3 freeze_graph.py
 ```
 4. Then you will get some `.pb` files in the root path.,  and run the demo script
 ```bashrc
@@ -98,8 +98,8 @@ Here are two kinds of training method:
 ##### (1) train from scratch:
 
 ```bashrc
-$ python train.py
-$ tensorboard --logdir ./data
+$ python3 train.py
+$ python3 -m tensorboard.main --logdir=data
 ```
 ##### (2) train from COCO weights(recommend):
 

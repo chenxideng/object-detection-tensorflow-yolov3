@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : evaluate.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-21 15:30:26
 #   Description :
 #
 #================================================================

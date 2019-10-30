@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : convert_weight.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 13:51:31
 #   Description :
 #
 #================================================================

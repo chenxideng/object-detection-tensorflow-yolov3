@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : image_demo.py
-#   Author      : YunYang1994
-#   Created date: 2019-01-20 16:06:06
 #   Description :
 #
 #================================================================

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # coding=utf-8
 #================================================================
-#   Copyright (C) 2018 * Ltd. All rights reserved.
+#   Copyright (C) 2019 * Ltd. All rights reserved.
 #
 #   Editor      : VIM
 #   File name   : video_demo.py

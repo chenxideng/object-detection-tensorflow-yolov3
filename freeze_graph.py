@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : freeze_graph.py
-#   Author      : YunYang1994
-#   Created date: 2019-03-20 15:57:33
 #   Description :
 #
 #================================================================
