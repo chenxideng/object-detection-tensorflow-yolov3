@@ -70,7 +70,7 @@ with tf.Session(graph=graph) as sess:
         bboxes = utils.nms(bboxes, 0.45, method='nms')
         image, mess = utils.draw_bbox(frame, bboxes)
         print(mess)
-        if mess is "person":
+        if mess.contains("person"):
             curr_time = time.time()
             exec_time = curr_time - prev_time
             result = np.asarray(image)
