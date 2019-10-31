@@ -37,7 +37,7 @@ FLAGS = parser.parse_args()
 if "input" in FLAGS:
     video_path = FLAGS.input
 else:
-    print("Must specify at least video_input_path. See usage with --help.")
+    raise ValueError("Must specify at least video_input_path. See usage with --help.")
 
 with tf.Session(graph=graph) as sess:
     vid = cv2.VideoCapture(video_path)
