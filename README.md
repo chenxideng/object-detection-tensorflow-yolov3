@@ -79,7 +79,7 @@ VOC           # path:  /home/charles/object-detection/VOC
          └──VOC2007 (from VOCtrainval_06-Nov-2007.tar)
          └──VOC2012 (from VOCtrainval_11-May-2012.tar)
                      
-$ sudo python3 scripts/voc_annotation.py --data_path /home/charles/VOC
+$ sudo python3 scripts/voc_annotation.py --data_path /home/charles/object-detection/VOC
 ```
 Then edit your `./core/config.py` to make some necessary configurations
 
@@ -94,6 +94,9 @@ Here are two kinds of training method:
 
 ```bashrc
 $ sudo python3 train.py
+```
+#### Launch tensorboard
+```bashrc
 $ sudo python3 -m tensorboard.main --logdir=data
 ```
 ##### (2) train from COCO weights(recommend):
@@ -109,19 +112,19 @@ $ sudo python3 train.py
 
 #### how to test and evaluate it ?
 ```
-$ python3 evaluate.py
+$ sudo python3 evaluate.py
 $ cd mAP
-$ python3 main.py -na
+$ sudo python3 main.py -na
 ```
 if you are still unfamiliar with training pipline, you can join [here](https://github.com/YunYang1994/tensorflow-yolov3/issues/39) to discuss with us.
 
 ### 3.2 Train other dataset
 Download COCO trainval  and test data
 ```
-$ wget http://images.cocodataset.org/zips/train2017.zip
-$ wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
-$ wget http://images.cocodataset.org/zips/test2017.zip
-$ wget http://images.cocodataset.org/annotations/image_info_test2017.zip 
+$ sudo wget http://images.cocodataset.org/zips/train2017.zip
+$ sudo wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
+$ sudo wget http://images.cocodataset.org/zips/test2017.zip
+$ sudo wget http://images.cocodataset.org/annotations/image_info_test2017.zip 
 ```
 
 ## part 4. Other Implementations
