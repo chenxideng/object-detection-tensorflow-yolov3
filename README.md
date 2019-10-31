@@ -95,7 +95,7 @@ Here are two kinds of training method:
 ```bashrc
 $ sudo python3 train.py
 ```
-#### Launch tensorboard
+##### Launch tensorboard
 ```bashrc
 $ sudo python3 -m tensorboard.main --logdir=data
 ```
