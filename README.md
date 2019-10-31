@@ -1,8 +1,4 @@
-# [TensorFlow2.0-Examples/4-Object_Detection/YOLOV3](https://github.com/YunYang1994/TensorFlow2.0-Examples/tree/master/4-Object_Detection/YOLOV3)
-
-## Please install tensorflow-gpu 1.11.0 !  Since Tensorflow is fucking ridiculous !
-
-## part 1. Introduction [[代码剖析]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
+## part 1. Introduction [[Tutorial]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
 
 Implementation of YOLO v3 object detector in Tensorflow. The full details are in [this paper](https://pjreddie.com/media/files/papers/YOLOv3.pdf).  In this project we cover several segments as follows:<br>
 - [x] [YOLO v3 architecture](https://github.com/YunYang1994/tensorflow-yolov3/blob/master/core/yolov3.py)
@@ -18,28 +14,27 @@ YOLO paper is quick hard to understand, along side that paper. This repo enables
 ## part 2. Quick start
 1. Clone this file
 ```bashrc
-$ git clone https://github.com/YunYang1994/tensorflow-yolov3.git
+$ sudo git clone https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
 2.  You are supposed  to install some dependencies before getting out hands with these codes.
 ```bashrc
-$ cd tensorflow-yolov3
-$ pip3 install -r ./docs/requirements.txt
+$ cd object-detection-tensorflow-yolov3
+$ sudo pip3 install -r ./docs/requirements.txt
 ```
-3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](https://pan.baidu.com/s/11mwiUy8KotjUVQXqkGGPFQ&shfl=sharepset)】
+3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](Link: https://pan.baidu.com/s/1YjuM0VcAm0MTRMDH5LL3iw Code: 7die)】
 ```bashrc
 $ cd checkpoint
 $ wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
-$ tar -xvf yolov3_coco.tar.gz
+$ sudo tar -xvf yolov3_coco.tar.gz
 $ cd ..
 $ sudo python3 convert_weight.py
 $ sudo python3 freeze_graph.py
 ```
 4. Then you will get some `.pb` files in the root path.,  and run the demo script
 ```bashrc
-$ python image_demo.py
-$ python video_demo.py # if use camera, set video_path = 0
+$ sudo python3 image_demo.py
+$ sudo python3 video_demo.py # if use camera, set video_path = 0
 ```
-![image](./docs/images/611_result.jpg)
 ## part 3. Train your own dataset
 Two files are required as follows:
 
@@ -67,15 +62,15 @@ To help you understand my training process, I made this demo of training VOC PAS
 #### how to train it ?
 Download VOC PASCAL trainval  and test data
 ```bashrc
-$ wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
-$ wget http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
-$ wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+$ sudo wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+$ sudo wget http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
+$ sudo wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
 ```
 Extract all of these tars into one directory and rename them, which should have the following basic structure.
 
 ```bashrc
 
-VOC           # path:  /home/yang/dataset/VOC
+VOC           # path:  /home/charles/object-detection/VOC
 ├── test
 |    └──VOCdevkit
 |        └──VOC2007 (from VOCtest_06-Nov-2007.tar)
@@ -84,7 +79,7 @@ VOC           # path:  /home/yang/dataset/VOC
          └──VOC2007 (from VOCtrainval_06-Nov-2007.tar)
          └──VOC2012 (from VOCtrainval_11-May-2012.tar)
                      
-$ python scripts/voc_annotation.py --data_path /home/yang/test/VOC
+$ sudo python3 scripts/voc_annotation.py --data_path /home/charles/VOC
 ```
 Then edit your `./core/config.py` to make some necessary configurations
 
@@ -98,25 +93,25 @@ Here are two kinds of training method:
 ##### (1) train from scratch:
 
 ```bashrc
-$ python3 train.py
-$ python3 -m tensorboard.main --logdir=data
+$ sudo python3 train.py
+$ sudo python3 -m tensorboard.main --logdir=data
 ```
 ##### (2) train from COCO weights(recommend):
 
 ```bashrc
 $ cd checkpoint
 $ wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
-$ tar -xvf yolov3_coco.tar.gz
+$ sudo tar -xvf yolov3_coco.tar.gz
 $ cd ..
-$ python convert_weight.py --train_from_coco
-$ python train.py
+$ sudo python3 convert_weight.py --train_from_coco
+$ sudo python3 train.py
 ```
 
 #### how to test and evaluate it ?
 ```
-$ python evaluate.py
+$ python3 evaluate.py
 $ cd mAP
-$ python main.py -na
+$ python3 main.py -na
 ```
 if you are still unfamiliar with training pipline, you can join [here](https://github.com/YunYang1994/tensorflow-yolov3/issues/39) to discuss with us.
 
