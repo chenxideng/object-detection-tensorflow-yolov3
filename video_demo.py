@@ -69,6 +69,7 @@ with tf.Session(graph=graph) as sess:
         bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0.3)
         bboxes = utils.nms(bboxes, 0.45, method='nms')
         image, mess = utils.draw_bbox(frame, bboxes)
+        print(mess)
         if mess is "person":
             curr_time = time.time()
             exec_time = curr_time - prev_time
