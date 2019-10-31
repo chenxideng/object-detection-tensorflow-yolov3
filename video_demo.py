@@ -27,6 +27,7 @@ input_size      = 416
 graph           = tf.Graph()
 return_tensors  = utils.read_pb_return_tensors(graph, pb_file, return_elements)
 
+parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS)
 parser.add_argument(
         "--input", nargs='?', type=str,required=False,default='./path2your_video',
         help = "Video input path"
