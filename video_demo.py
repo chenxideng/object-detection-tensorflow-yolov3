@@ -68,28 +68,33 @@ with tf.Session(graph=graph) as sess:
 
         bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0.3)
         bboxes = utils.nms(bboxes, 0.45, method='nms')
-        image = utils.draw_bbox(frame, bboxes)
+        image, mess = utils.draw_bbox(frame, bboxes)
+        if mess == "person":
+            curr_time = time.time()
+            exec_time = curr_time - prev_time
+            result = np.asarray(image)
+            accum_time = accum_time + exec_time
+            curr_fps = curr_fps + 1
 
-        curr_time = time.time()
-        exec_time = curr_time - prev_time
-        result = np.asarray(image)
-        accum_time = accum_time + exec_time
-        curr_fps = curr_fps + 1
+            info = "time: %.2f s" %(exec_time)
+            print(info)
 
-        info = "time: %.2f s" %(exec_time)
-        print(info)
+            if accum_time > 1:
+                accum_time = accum_time - 1
+                fps = "FPS: " + str(curr_fps) + "Person !!!"
+                curr_fps = 0
 
-        if accum_time > 1:
-            accum_time = accum_time - 1
-            fps = "FPS: " + str(curr_fps)
-            curr_fps = 0
-
-        cv2.putText(result, text=fps, org=(3, 15), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+            cv2.putText(result, text=fps, org=(3, 15), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=0.50, color=(255, 0, 0), thickness=2)
-        cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
-        result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        cv2.imshow("result", result)
-        if cv2.waitKey(1) & 0xFF == ord('q'): break
+            cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
+            result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            cv2.imshow("result", result)
+            if cv2.waitKey(1) & 0xFF == ord('q'): break
+
+        else: 
+            break
+
+        
 
 
 
