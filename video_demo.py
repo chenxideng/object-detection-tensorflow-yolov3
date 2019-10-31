@@ -82,11 +82,12 @@ with tf.Session(graph=graph) as sess:
 
             if accum_time > 1:
                 accum_time = accum_time - 1
-                fps = "FPS: " + str(curr_fps) + "Person !!!"
+                fps = "FPS: " + str(curr_fps)
+                fps = "WARNING - Person !!!"
                 curr_fps = 0
 
             cv2.putText(result, text=fps, org=(3, 15), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                    fontScale=0.50, color=(255, 0, 0), thickness=2)
+                    fontScale=1.50, color=(255, 0, 0), thickness=2)
             cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
             result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             cv2.imshow("result", result)
