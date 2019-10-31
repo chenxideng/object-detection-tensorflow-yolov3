@@ -83,6 +83,7 @@ with tf.Session(graph=graph) as sess:
         if accum_time > 1:
             accum_time = accum_time - 1
             fps = "FPS: " + str(curr_fps)
+            fps = ''
             if "person" in mess:
                 fps = "WARNING - Person !!!"
             curr_fps = 0
