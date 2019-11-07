@@ -68,8 +68,7 @@ with tf.Session(graph=graph) as sess:
 
         bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0.3)
         bboxes = utils.nms(bboxes, 0.45, method='nms')
-        image, mess = utils.draw_bbox(frame, bboxes)
-        print(mess)
+        image = utils.draw_bbox(frame, bboxes)
 
         curr_time = time.time()
         exec_time = curr_time - prev_time
@@ -83,9 +82,6 @@ with tf.Session(graph=graph) as sess:
         if accum_time > 1:
             accum_time = accum_time - 1
             fps = "FPS: " + str(curr_fps)
-            fps = ''
-            if "person" in mess:
-                fps = "WARNING - Person !!!"
             curr_fps = 0
 
         cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
