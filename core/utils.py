@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : utils.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 13:14:19
 #   Description :
 #
 #================================================================
@@ -19,7 +17,7 @@ import tensorflow as tf
 from core.config import cfg
 
 def read_class_names(class_file_name):
-    '''loads class name from a file'''
+    # loads class name from a file
     names = {}
     with open(class_file_name, 'r') as data:
         for ID, name in enumerate(data):
@@ -28,7 +26,7 @@ def read_class_names(class_file_name):
 
 
 def get_anchors(anchors_path):
-    '''loads the anchors from a file'''
+    # loads the anchors from a file
     with open(anchors_path) as f:
         anchors = f.readline()
     anchors = np.array(anchors.split(','), dtype=np.float32)
@@ -61,9 +59,7 @@ def image_preporcess(image, target_size, gt_boxes=None):
 
 
 def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_label=True):
-    """
-    bboxes: [x_min, y_min, x_max, y_max, probability, cls_id] format coordinates.
-    """
+    # bboxes: [x_min, y_min, x_max, y_max, probability, cls_id] format coordinates.
 
     num_classes = len(classes)
     image_h, image_w, _ = image.shape
@@ -114,7 +110,6 @@ def bboxes_iou(boxes1, boxes2):
     ious          = np.maximum(1.0 * inter_area / union_area, np.finfo(np.float32).eps)
 
     return ious
-
 
 
 def read_pb_return_tensors(graph, pb_file, return_elements):

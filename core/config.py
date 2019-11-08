@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : config.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 13:06:54
 #   Description :
 #
 #================================================================
@@ -37,7 +35,7 @@ __C.YOLO.DEMO_WEIGHT            = "./checkpoint/yolov3_coco_demo.ckpt"
 __C.TRAIN                       = edict()
 
 __C.TRAIN.ANNOT_PATH            = "./data/dataset/voc_train.txt"
-__C.TRAIN.BATCH_SIZE            = 6
+__C.TRAIN.BATCH_SIZE            = 2
 __C.TRAIN.INPUT_SIZE            = [320, 352, 384, 416, 448, 480, 512, 544, 576, 608]
 __C.TRAIN.DATA_AUG              = True
 __C.TRAIN.LEARN_RATE_INIT       = 1e-4
