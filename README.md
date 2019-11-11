@@ -16,7 +16,8 @@ YOLO paper is quick hard to understand, along side that paper. This repo enables
 ```bashrc
 $ sudo git clone --branch <branchname> https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
-2.  You are supposed  to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0
+2.  You are supposed  to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0. please follow steps to install CUDA & cuDNN: 
+https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
 ```bashrc
 $ cd object-detection-tensorflow-yolov3
 $ sudo pip3 install -r ./docs/requirements.txt
