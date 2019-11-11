@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : dataset.py
-#   Author      : YunYang1994
-#   Created date: 2019-03-15 18:05:03
 #   Description :
 #
 #================================================================

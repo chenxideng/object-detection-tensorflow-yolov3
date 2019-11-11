@@ -1,4 +1,4 @@
-## part 1. Introduction [[Tutorial]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
+## Part 1. Introduction [[Tutorial]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
 
 Implementation of YOLO v3 object detector in Tensorflow. The full details are in [this paper](https://pjreddie.com/media/files/papers/YOLOv3.pdf).  In this project we cover several segments as follows:<br>
 - [x] [YOLO v3 architecture](https://github.com/YunYang1994/tensorflow-yolov3/blob/master/core/yolov3.py)
@@ -11,12 +11,12 @@ Implementation of YOLO v3 object detector in Tensorflow. The full details are in
 YOLO paper is quick hard to understand, along side that paper. This repo enables you to have a quick understanding of YOLO Algorithmn.
 
 
-## part 2. Quick start
+## Part 2. Quick start
 1. Clone this file
 ```bashrc
-$ sudo git clone https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
+$ sudo git clone --branch <branchname> https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
-2.  You are supposed  to install some dependencies before getting out hands with these codes.
+2.  You are supposed  to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0
 ```bashrc
 $ cd object-detection-tensorflow-yolov3
 $ sudo pip3 install -r ./docs/requirements.txt
@@ -33,9 +33,10 @@ $ sudo python3 freeze_graph.py
 4. Then you will get some `.pb` files in the root path.,  and run the demo script
 ```bashrc
 $ sudo python3 image_demo.py
-$ sudo python3 video_demo.py # if use camera, set video_path = 0
+$ sudo python3 video_demo.py --input <name> # if use camera, set video_path = 0
 ```
-## part 3. Train your own dataset
+
+## Part 3. Train your own dataset
 Two files are required as follows:
 
 - [`dataset.txt`](https://raw.githubusercontent.com/YunYang1994/tensorflow-yolov3/master/data/dataset/voc_train.txt): 
