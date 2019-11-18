@@ -9,6 +9,7 @@
 #
 #================================================================
 import sys
+import os
 import argparse
 import cv2
 import time
@@ -17,7 +18,7 @@ import core.utils as utils
 import tensorflow as tf
 from PIL import Image
 
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 return_elements = ["input/input_data:0", "pred_sbbox/concat_2:0", "pred_mbbox/concat_2:0", "pred_lbbox/concat_2:0"]
 pb_file         = "./yolov3_coco.pb"
 video_path      = "./docs/images/test.mov"

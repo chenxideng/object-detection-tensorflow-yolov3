@@ -16,12 +16,18 @@ YOLO paper is quick hard to understand, along side that paper. This repo enables
 ```bashrc
 $ sudo git clone --branch <branchname> https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
-2.  You are supposed  to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0. please follow steps to install CUDA & cuDNN: 
+2.  You are supposed to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0. please follow steps to install CUDA & cuDNN: 
 https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
 ```bashrc
 $ cd object-detection-tensorflow-yolov3
 $ sudo pip3 install -r ./docs/requirements.txt
 ```
+check cuda version and check if more than one cuda version installed
+```bashrc
+$ sudo nvidia-smi
+$ cd /use/local
+```
+if more than one version installed, just erase lower version and keep ONE highest version.
 3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](Link: https://pan.baidu.com/s/1YjuM0VcAm0MTRMDH5LL3iw Code: 7die)】
 ```bashrc
 $ cd checkpoint
@@ -34,7 +40,7 @@ $ sudo python3 freeze_graph.py
 4. Then you will get some `.pb` files in the root path.,  and run the demo script
 ```bashrc
 $ sudo python3 image_demo.py
-$ sudo python3 video_demo.py --input <name> # if use camera, set video_path = 0
+$ sudo python3 video_demo.py --input <video_path> # if use camera, set video_path = 0
 ```
 
 ## Part 3. Train your own dataset
@@ -121,7 +127,7 @@ $ sudo python3 main.py -na
 if you are still unfamiliar with training pipline, you can join [here](https://github.com/YunYang1994/tensorflow-yolov3/issues/39) to discuss with us.
 
 ### 3.2 Train other dataset
-Download COCO trainval  and test data
+Download COCO and test data
 ```
 $ sudo wget http://images.cocodataset.org/zips/train2017.zip
 $ sudo wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
@@ -129,7 +135,7 @@ $ sudo wget http://images.cocodataset.org/zips/test2017.zip
 $ sudo wget http://images.cocodataset.org/annotations/image_info_test2017.zip 
 ```
 
-## part 4. Other Implementations
+## Part 4. Other Implementations
 
 [-**`YOLOv3目标检测有了TensorFlow实现，可用自己的数据来训练`**](https://mp.weixin.qq.com/s/cq7g1-4oFTftLbmKcpi_aQ)<br>
 
