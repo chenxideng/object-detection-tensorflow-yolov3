@@ -16,18 +16,19 @@ YOLO paper is quick hard to understand, along side that paper. This repo enables
 ```bashrc
 $ sudo git clone --branch <branchname> https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
+
 2.  You are supposed to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0. please follow steps to install CUDA & cuDNN: 
 https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
 ```bashrc
 $ cd object-detection-tensorflow-yolov3
 $ sudo pip3 install -r ./docs/requirements.txt
 ```
-check cuda version and check if more than one cuda version installed
+check cuda version and check if more than one cuda version installed, just erase lower version and keep ONE highest version.
 ```bashrc
 $ sudo nvidia-smi
 $ cd /use/local
 ```
-if more than one version installed, just erase lower version and keep ONE highest version.
+
 3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](Link: https://pan.baidu.com/s/1YjuM0VcAm0MTRMDH5LL3iw Code: 7die)】
 ```bashrc
 $ cd checkpoint
