@@ -32,7 +32,7 @@ $ cd /use/local
 3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](Link: https://pan.baidu.com/s/1YjuM0VcAm0MTRMDH5LL3iw Code: 7die)】
 ```bashrc
 $ cd checkpoint
-$ wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
+$ sudo wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
 $ sudo tar -xvf yolov3_coco.tar.gz
 $ cd ..
 $ sudo python3 convert_weight.py

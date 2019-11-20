@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : common.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 09:56:29
 #   Description :
 #
 #================================================================

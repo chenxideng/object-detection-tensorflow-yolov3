@@ -5,8 +5,6 @@
 #
 #   Editor      : VIM
 #   File name   : yolov3.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 10:47:03
 #   Description :
 #
 #================================================================
