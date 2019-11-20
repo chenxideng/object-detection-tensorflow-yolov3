@@ -47,6 +47,7 @@ with tf.Session(graph=graph) as sess:
     accum_time = 0
     curr_fps = 0
     fps = "FPS: ??"
+    return_param = ""
 
     while True:
         return_value, frame = vid.read()
@@ -79,7 +80,6 @@ with tf.Session(graph=graph) as sess:
         result = np.asarray(image)
         accum_time = accum_time + exec_time
         curr_fps = curr_fps + 1
-        result = ''
 
         info = "time: %.2f s" %(exec_time)
         #print(info)
@@ -90,10 +90,10 @@ with tf.Session(graph=graph) as sess:
             fps = ''
             if "person" in mess:
                 #fps = "WARNING - Person !!!"
-                result = "True"
+                return_param = "True"
                 break
             else:
-                result = "False"
+                return_param = "False"
             curr_fps = 0
 
         #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
@@ -103,7 +103,7 @@ with tf.Session(graph=graph) as sess:
         #cv2.imshow("result", result)
         #if cv2.waitKey(1) & 0xFF == ord('q'): break
 
-    print(result)
+    print(return_param)
         
 
 
