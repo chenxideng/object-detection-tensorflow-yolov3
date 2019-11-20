@@ -90,6 +90,13 @@ with tf.Session(graph=graph) as sess:
         info = "time: %.2f s" %(exec_time)
         #print(info)
 
+        if "person" in mess:
+            #fps = "WARNING - Person !!!"
+            return_param = "True"
+            break
+        else:
+            return_param = "False"
+        '''
         if accum_time > 1:
             accum_time = accum_time - 1
             fps = "FPS: " + str(curr_fps)
@@ -101,6 +108,7 @@ with tf.Session(graph=graph) as sess:
             else:
                 return_param = "False"
             curr_fps = 0
+        '''
 
         #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                 #fontScale=1.50, color=(255, 0, 0), thickness=2)
