@@ -96,14 +96,14 @@ with tf.Session(graph=graph) as sess:
                 result = "False"
             curr_fps = 0
 
-        print(result)
-
         #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                 #fontScale=1.50, color=(255, 0, 0), thickness=2)
         #cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
         #result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #cv2.imshow("result", result)
         if cv2.waitKey(1) & 0xFF == ord('q'): break
+
+    print(result)
         
 
 
