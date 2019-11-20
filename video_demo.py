@@ -53,7 +53,8 @@ with tf.Session(graph=graph) as sess:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image = Image.fromarray(frame)
         else:
-            raise ValueError("No image!")
+            #raise ValueError("No image!")
+            break
         frame_size = frame.shape[:2]
         image_data = utils.image_preporcess(np.copy(frame), [input_size, input_size])
         image_data = image_data[np.newaxis, ...]
@@ -88,10 +89,12 @@ with tf.Session(graph=graph) as sess:
             if "person" in mess:
                 #fps = "WARNING - Person !!!"
                 print("True")
+            else:
+                print("False")
             curr_fps = 0
 
         #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                fontScale=1.50, color=(255, 0, 0), thickness=2)
+                #fontScale=1.50, color=(255, 0, 0), thickness=2)
         #cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
         #result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #cv2.imshow("result", result)
