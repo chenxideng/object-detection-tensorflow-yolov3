@@ -78,6 +78,7 @@ with tf.Session(graph=graph) as sess:
         result = np.asarray(image)
         accum_time = accum_time + exec_time
         curr_fps = curr_fps + 1
+        result = ''
 
         info = "time: %.2f s" %(exec_time)
         #print(info)
@@ -88,10 +89,13 @@ with tf.Session(graph=graph) as sess:
             fps = ''
             if "person" in mess:
                 #fps = "WARNING - Person !!!"
-                print("True")
+                result = "True"
+                break
             else:
-                print("False")
+                result = "False"
             curr_fps = 0
+
+        print(result)
 
         #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                 #fontScale=1.50, color=(255, 0, 0), thickness=2)
