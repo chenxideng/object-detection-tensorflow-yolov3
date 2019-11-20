@@ -8,6 +8,9 @@
 #   Description :
 #
 #================================================================
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import sys
 import os
 import argparse
@@ -17,8 +20,9 @@ import numpy as np
 import core.utils as utils
 import tensorflow as tf
 from PIL import Image
-import warnings
-warnings.filterwarnings('ignore')
+import logging
+tf.get_logger().setLevel(logging.ERROR)
+
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
