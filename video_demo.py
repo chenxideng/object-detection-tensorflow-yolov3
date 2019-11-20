@@ -101,7 +101,7 @@ with tf.Session(graph=graph) as sess:
         #cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
         #result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #cv2.imshow("result", result)
-        if cv2.waitKey(1) & 0xFF == ord('q'): break
+        #if cv2.waitKey(1) & 0xFF == ord('q'): break
 
     print(result)
         
