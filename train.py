@@ -5,8 +5,8 @@
 #
 #   Editor      : VIM
 #   File name   : train.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 17:50:26
+#   Author      : Charles Deng
+#   Created date: 2019-11-17 11:03:35
 #   Description :
 #
 #================================================================
