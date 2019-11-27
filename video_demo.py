@@ -25,13 +25,12 @@ from PIL import Image
 import logging
 tf.get_logger().setLevel(logging.ERROR)
 
-
+#just erase debug message
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 return_elements = ["input/input_data:0", "pred_sbbox/concat_2:0", "pred_mbbox/concat_2:0", "pred_lbbox/concat_2:0"]
 pb_file         = "./yolov3_coco.pb"
-video_path      = "./docs/images/test.mov"
-# video_path      = 0
+video_path      = 0
 num_classes     = 80
 input_size      = 416
 graph           = tf.Graph()
