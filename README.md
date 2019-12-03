@@ -118,6 +118,13 @@ $ cd ..
 $ sudo python3 convert_weight.py --train_from_coco
 $ sudo python3 train.py
 ```
+##### (3) train from your own datasets:
+##### Label from LabelImg
+1. Update classes and datasets txt file;
+2. Update classes number of demo.py to meet the classes number;
+3. After training, update core/config.py to use the new weight file located in checkpoints/, and update classes txt;
+4. Update freeze.py file to use the right weight and create *.pb, run freeze.py to generate *.pb file;
+5. Update demo.py to use the new *.pb file.
 
 #### how to test and evaluate it ?
 ```
