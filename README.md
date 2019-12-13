@@ -65,6 +65,7 @@ car
 ...
 toothbrush
 ```
+if you add classes, please create a new file
 
 ### 3.1 Train VOC dataset
 To help you understand my training process, I made this demo of training VOC PASCAL dataset
@@ -119,12 +120,13 @@ $ sudo python3 convert_weight.py --train_from_coco
 $ sudo python3 train.py
 ```
 ##### (3) train from your own datasets:
-##### Label from LabelImg
-1. Update classes and datasets txt file;
-2. Update classes number of demo.py to meet the classes number;
-3. After training, update core/config.py to use the new weight file located in checkpoints/, and update classes txt;
-4. Update freeze.py file to use the right weight and create *.pb, run freeze.py to generate *.pb file;
-5. Update demo.py to use the new *.pb file.
+##### Label from LabelImg (an open source for labeling)
+1. Create classes and datasets txt file (id from 0);
+2. Modify classes number of demo.py to match the number of classes;
+3. Run train.py
+4. After training, update core/config.py to use the new weight file located in checkpoints/, and update classes txt;
+5. Update freeze.py file to use the right weight and create *.pb, run freeze.py to generate *.pb file;
+6. Update demo.py to use the new *.pb file.
 
 #### how to test and evaluate it ?
 ```
