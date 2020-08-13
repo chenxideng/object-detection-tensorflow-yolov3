@@ -147,7 +147,6 @@ $ sudo wget http://images.cocodataset.org/annotations/image_info_test2017.zip
 
 ## Part 4. Other Implementations
 
-[-**`YOLOv3目标检测有了TensorFlow实现，可用自己的数据来训练`**](https://mp.weixin.qq.com/s/cq7g1-4oFTftLbmKcpi_aQ)<br>
 
 [-**`Stronger-yolo`**](https://github.com/Stinky-Tofu/Stronger-yolo)<br>
 
