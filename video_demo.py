@@ -5,10 +5,16 @@
 #
 #   Editor      : VIM
 #   File name   : video_demo.py
+#   Author      : Charles Deng
+#   Created date: 2019-11-17 11:03:35
 #   Description :
 #
 #================================================================
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import sys
+import os
 import argparse
 import cv2
 import time
@@ -16,12 +22,15 @@ import numpy as np
 import core.utils as utils
 import tensorflow as tf
 from PIL import Image
+import logging
+tf.get_logger().setLevel(logging.ERROR)
 
-
+#just erase debug message
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 return_elements = ["input/input_data:0", "pred_sbbox/concat_2:0", "pred_mbbox/concat_2:0", "pred_lbbox/concat_2:0"]
 pb_file         = "./yolov3_coco.pb"
-video_path      = "./docs/images/test.mov"
-# video_path      = 0
+video_path      = 0
 num_classes     = 80
 input_size      = 416
 graph           = tf.Graph()
@@ -45,6 +54,7 @@ with tf.Session(graph=graph) as sess:
     accum_time = 0
     curr_fps = 0
     fps = "FPS: ??"
+    return_param = ""
 
     while True:
         return_value, frame = vid.read()
@@ -52,7 +62,8 @@ with tf.Session(graph=graph) as sess:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image = Image.fromarray(frame)
         else:
-            raise ValueError("No image!")
+            #raise ValueError("No image!")
+            break
         frame_size = frame.shape[:2]
         image_data = utils.image_preporcess(np.copy(frame), [input_size, input_size])
         image_data = image_data[np.newaxis, ...]
@@ -68,7 +79,8 @@ with tf.Session(graph=graph) as sess:
 
         bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0.3)
         bboxes = utils.nms(bboxes, 0.45, method='nms')
-        image = utils.draw_bbox(frame, bboxes)
+        image, mess = utils.draw_bbox(frame, bboxes)
+        #print(mess)
 
         curr_time = time.time()
         exec_time = curr_time - prev_time
@@ -77,19 +89,36 @@ with tf.Session(graph=graph) as sess:
         curr_fps = curr_fps + 1
 
         info = "time: %.2f s" %(exec_time)
-        print(info)
+        #print(info)
 
+        if "person" in mess:
+            #fps = "WARNING - Person !!!"
+            return_param = "True"
+            break
+        else:
+            return_param = "False"
+        '''
         if accum_time > 1:
             accum_time = accum_time - 1
             fps = "FPS: " + str(curr_fps)
+            fps = ''
+            if "person" in mess:
+                #fps = "WARNING - Person !!!"
+                return_param = "True"
+                break
+            else:
+                return_param = "False"
             curr_fps = 0
+        '''
 
-        cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
-                fontScale=1.50, color=(255, 0, 0), thickness=2)
-        cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
-        result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        cv2.imshow("result", result)
-        if cv2.waitKey(1) & 0xFF == ord('q'): break
+        #cv2.putText(result, text=fps, org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                #fontScale=1.50, color=(255, 0, 0), thickness=2)
+        #cv2.namedWindow("result", cv2.WINDOW_AUTOSIZE)
+        #result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        #cv2.imshow("result", result)
+        #if cv2.waitKey(1) & 0xFF == ord('q'): break
+
+    print(return_param)
         
 
 

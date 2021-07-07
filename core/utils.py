@@ -5,8 +5,8 @@
 #
 #   Editor      : VIM
 #   File name   : utils.py
-#   Author      : YunYang1994
-#   Created date: 2019-02-28 13:14:19
+#   Author      : Charles Deng
+#   Created date: 2019-11-17 11:03:35
 #   Description :
 #
 #================================================================
@@ -19,7 +19,7 @@ import tensorflow as tf
 from core.config import cfg
 
 def read_class_names(class_file_name):
-    '''loads class name from a file'''
+    # loads class name from a file
     names = {}
     with open(class_file_name, 'r') as data:
         for ID, name in enumerate(data):
@@ -28,7 +28,7 @@ def read_class_names(class_file_name):
 
 
 def get_anchors(anchors_path):
-    '''loads the anchors from a file'''
+    # loads the anchors from a file
     with open(anchors_path) as f:
         anchors = f.readline()
     anchors = np.array(anchors.split(','), dtype=np.float32)
@@ -61,9 +61,7 @@ def image_preporcess(image, target_size, gt_boxes=None):
 
 
 def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_label=True):
-    """
-    bboxes: [x_min, y_min, x_max, y_max, probability, cls_id] format coordinates.
-    """
+    # bboxes: [x_min, y_min, x_max, y_max, probability, cls_id] format coordinates.
 
     num_classes = len(classes)
     image_h, image_w, _ = image.shape
@@ -74,6 +72,7 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
     random.seed(0)
     random.shuffle(colors)
     random.seed(None)
+    bbox_mess = ''
 
     for i, bbox in enumerate(bboxes):
         coor = np.array(bbox[:4], dtype=np.int32)
@@ -93,8 +92,7 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
             cv2.putText(image, bbox_mess, (c1[0], c1[1]-2), cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale, (0, 0, 0), bbox_thick//2, lineType=cv2.LINE_AA)
 
-    return image
-
+    return image, bbox_mess
 
 
 def bboxes_iou(boxes1, boxes2):
@@ -114,7 +112,6 @@ def bboxes_iou(boxes1, boxes2):
     ious          = np.maximum(1.0 * inter_area / union_area, np.finfo(np.float32).eps)
 
     return ious
-
 
 
 def read_pb_return_tensors(graph, pb_file, return_elements):

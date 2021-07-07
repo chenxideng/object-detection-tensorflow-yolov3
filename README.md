@@ -1,7 +1,7 @@
-## part 1. Introduction [[Tutorial]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
+## Part 1. Introduction [[Tutorial]](https://github.com/YunYang1994/ai-notebooks/blob/master/YOLOv3.md)
 
 Implementation of YOLO v3 object detector in Tensorflow. The full details are in [this paper](https://pjreddie.com/media/files/papers/YOLOv3.pdf).  In this project we cover several segments as follows:<br>
-- [x] [YOLO v3 architecture](https://github.com/YunYang1994/tensorflow-yolov3/blob/master/core/yolov3.py)
+- [x] [YOLO v3 architecture]
 - [x] [Training tensorflow-yolov3 with GIOU loss function](https://giou.stanford.edu/)
 - [x] Basic working demo
 - [x] Training pipeline
@@ -11,20 +11,28 @@ Implementation of YOLO v3 object detector in Tensorflow. The full details are in
 YOLO paper is quick hard to understand, along side that paper. This repo enables you to have a quick understanding of YOLO Algorithmn.
 
 
-## part 2. Quick start
+## Part 2. Quick start
 1. Clone this file
 ```bashrc
-$ sudo git clone https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
+$ sudo git clone --branch <branchname> https://github.com/chenxideng/object-detection-tensorflow-yolov3.git
 ```
-2.  You are supposed  to install some dependencies before getting out hands with these codes.
+
+2.  You are supposed to install some dependencies before getting out hands with these codes s.t. CUDA 10.0, Tensorflow-gpu 1.14.0, & cuDNN 7.5.0. please follow steps to install CUDA & cuDNN: 
+https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
 ```bashrc
 $ cd object-detection-tensorflow-yolov3
 $ sudo pip3 install -r ./docs/requirements.txt
 ```
+check cuda version and check if more than one cuda version installed, just erase lower version and keep ONE highest version.
+```bashrc
+$ sudo nvidia-smi
+$ cd /use/local
+```
+
 3. Exporting loaded COCO weights as TF checkpoint(`yolov3_coco.ckpt`)【[BaiduCloud](Link: https://pan.baidu.com/s/1YjuM0VcAm0MTRMDH5LL3iw Code: 7die)】
 ```bashrc
 $ cd checkpoint
-$ wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
+$ sudo wget https://github.com/YunYang1994/tensorflow-yolov3/releases/download/v1.0/yolov3_coco.tar.gz
 $ sudo tar -xvf yolov3_coco.tar.gz
 $ cd ..
 $ sudo python3 convert_weight.py
@@ -33,9 +41,10 @@ $ sudo python3 freeze_graph.py
 4. Then you will get some `.pb` files in the root path.,  and run the demo script
 ```bashrc
 $ sudo python3 image_demo.py
-$ sudo python3 video_demo.py # if use camera, set video_path = 0
+$ sudo python3 video_demo.py --input <video_path> # if use camera, set video_path = 0
 ```
-## part 3. Train your own dataset
+
+## Part 3. Train your own dataset
 Two files are required as follows:
 
 - [`dataset.txt`](https://raw.githubusercontent.com/YunYang1994/tensorflow-yolov3/master/data/dataset/voc_train.txt): 
@@ -56,6 +65,7 @@ car
 ...
 toothbrush
 ```
+if you add classes, please create a new file
 
 ### 3.1 Train VOC dataset
 To help you understand my training process, I made this demo of training VOC PASCAL dataset
@@ -109,6 +119,14 @@ $ cd ..
 $ sudo python3 convert_weight.py --train_from_coco
 $ sudo python3 train.py
 ```
+##### (3) train from your own datasets:
+##### Label from LabelImg (an open source for labeling)
+1. Create classes and datasets txt file (id from 0);
+2. Modify classes number of demo.py to match the number of classes;
+3. Run train.py
+4. After training, update core/config.py to use the new weight file located in checkpoints/, and update classes txt;
+5. Update freeze.py file to use the right weight and create *.pb, run freeze.py to generate *.pb file;
+6. Update demo.py to use the new *.pb file.
 
 #### how to test and evaluate it ?
 ```
@@ -119,7 +137,7 @@ $ sudo python3 main.py -na
 if you are still unfamiliar with training pipline, you can join [here](https://github.com/YunYang1994/tensorflow-yolov3/issues/39) to discuss with us.
 
 ### 3.2 Train other dataset
-Download COCO trainval  and test data
+Download COCO and test data
 ```
 $ sudo wget http://images.cocodataset.org/zips/train2017.zip
 $ sudo wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
@@ -127,9 +145,8 @@ $ sudo wget http://images.cocodataset.org/zips/test2017.zip
 $ sudo wget http://images.cocodataset.org/annotations/image_info_test2017.zip 
 ```
 
-## part 4. Other Implementations
+## Part 4. Other Implementations
 
-[-**`YOLOv3目标检测有了TensorFlow实现，可用自己的数据来训练`**](https://mp.weixin.qq.com/s/cq7g1-4oFTftLbmKcpi_aQ)<br>
 
 [-**`Stronger-yolo`**](https://github.com/Stinky-Tofu/Stronger-yolo)<br>
 
